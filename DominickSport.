@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tienda de Productos de Fútbol</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .search-container {
+            margin: 20px auto;
+            width: 90%;
+            max-width: 500px;
+        }
+
+        .search-container input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .search-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .search-container button:hover {
+            background-color: #218838;
+        }
+
+        .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .product {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 200px;
+            padding: 10px;
+            margin: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .product img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        .product h3 {
+            font-size: 18px;
+            color: #333;
+        }
+
+        .product p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .product .price {
+            font-size: 16px;
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        .buy-button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .buy-button:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Productos de Fútbol</h1>
+    </header>
+
+    <div class="search-container">
+        <input type="text" id="search-input" placeholder="Buscar productos..." onkeyup="searchProduct()">
+        <button onclick="searchProduct()">Buscar</button>
+    </div>
+
+    <div class="product-list" id="product-list">
+        <!-- Productos de ejemplo -->
+        <div class="product" data-name="balón de fútbol">
+            <img src="C:\Users\USER1\Downloads\descarga (3).jpg">
+            <h3>Balón de Fútbol</h3>
+            <p>Un balón de fútbol de alta calidad para entrenamientos y partidos.</p>
+            <p class="price">$29.99</p>
+            <button class="buy-button" onclick="buyProduct('Balón de Fútbol')">Comprar</button>
+        </div>
+
+        <div class="product" data-name="camiseta de fútbol">
+            <img src="C:\Users\USER1\Downloads\descarga (2).jpg" alt="Camiseta de fútbol">
+            <h3>Camiseta de Fútbol</h3>
+            <p>Camiseta deportiva para jugadores profesionales y aficionados.</p>
+            <p class="price">$19.99</p>
+            <button class="buy-button" onclick="buyProduct('Camiseta de Fútbol')">Comprar</button>
+        </div>
+
+        <div class="product" data-name="guantes de portero">
+            <img src="D:\descarga (4).jpg" alt="Guantes de portero">
+            <h3>Guantes de Portero</h3>
+            <p>Guantes resistentes y cómodos para un mejor agarre en el arco.</p>
+            <p class="price">$49.99</p>
+            <button class="buy-button" onclick="buyProduct('Guantes de Portero')">Comprar</button>
+        </div>
+
+        <div class="product" data-name="pantalón de fútbol">
+            <img src="D:\descarga.jpg"Pantalón de fútbol">
+            <h3>Pantalón de Fútbol</h3>
+            <p>Pantalón cómodo y ligero, ideal para entrenamientos y partidos.</p>
+            <p class="price">$34.99</p>
+            <button class="buy-button" onclick="buyProduct('Pantalón de Fútbol')">Comprar</button>
+        </div>
+
+        <div class="product" data-name="espinilleras de fútbol">
+            <img src="D:\descarga (1).jpg" alt="Espinilleras de fútbol">
+            <h3>Espinilleras de Fútbol</h3>
+            <p>Protección adicional para tus piernas mientras juegas.</p>
+            <p class="price">$15.99</p>
+            <button class="buy-button" onclick="buyProduct('Espinilleras de Fútbol')">Comprar</button>
+        </div>
+
+        <div class="product" data-name="bota fútbol sala">
+            <img src="D:\descarga (2).jpg" alt="Bota fútbol sala">
+            <h3>Bota Fútbol Sala</h3>
+            <p>Bota especial para jugar fútbol sala, ligera y resistente.</p>
+            <p class="price">$59.99</p>
+            <button class="buy-button" onclick="buyProduct('Bota Fútbol Sala')">Comprar</button>
+        </div>
+
+        <div class="product" data-name="balón oficial mundial">
+            <img src="D:\descarga (3).jpg" alt="Balón oficial mundial">
+            <h3>Balón Oficial Mundial</h3>
+            <p>Balón oficial de la Copa del Mundo, para los fanáticos del fútbol.</p>
+            <p class="price">$89.99</p>
+            <button class="buy-button" onclick="buyProduct('Balón Oficial Mundial')">Comprar</button>
+        </div>
+
+        <div class="product" data-name="polo de fútbol retro">
+            <img src="D:\descarga (5).jpg" alt="Polo de fútbol retro">
+            <h3>Polo de Fútbol Retro</h3>
+            <p>Polo inspirado en los diseños clásicos de las camisetas de fútbol.</p>
+            <p class="price">$34.99</p>
+            <button class="buy-button" onclick="buyProduct('Polo de Fútbol Retro')">Comprar</button>
+        </div>
+
+        <div class="product" data-name="sudadera de fútbol">
+            <img src="D:\descarga (6).jpg" alt="Sudadera de fútbol">
+            <h3>Sudadera de Fútbol</h3>
+            <p>Sudadera cómoda para entrenamientos y actividades informales.</p>
+            <p class="price">$39.99</p>
+            <button class="buy-button" onclick="buyProduct('Sudadera de Fútbol')">Comprar</button>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Tienda de Productos de Fútbol | Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        function searchProduct() {
+            let input = document.getElementById('search-input').value.toLowerCase();
+            let products = document.getElementsByClassName('product');
+            
+            Array.from(products).forEach(product => {
+                let productName = product.getAttribute('data-name').toLowerCase();
+                
+                if (productName.includes(input)) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+
+        function buyProduct(productName) {
+            alert(`Has agregado ${productName} al carrito de compras.`);
+        }
+    </script>
+<footer>
+    <p>Teléfono: <a href="tel:+1234567890" style="color: #fff;">+593 029233</a></p>
+    <div class="social-icons">
+        <a href="https://www.facebook.com" target="_blank">Facebook</a>
+        <a href="https://www.instagram.com" target="_blank">Instagram</a>
+    </div>
+</footer>
+
+
+</body>
+</html>
